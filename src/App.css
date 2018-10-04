@@ -1,0 +1,204 @@
+.App {
+    display: grid;
+    text-align: center;
+    padding: 0px;
+    /* background-color: rgb(24, 139, 134); */
+}
+
+.app_head_grid {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    background-color: rgb(117, 255, 158);
+    /* background-color: rgb(168, 198, 255); */
+}
+
+.app_head_inner_grid {
+    text-align: left;
+}
+
+nav {
+    margin: 0px;
+    padding: 0px 0px 10px 20px;
+    font-size: 1.8em;
+    color: rgb(40, 37, 47);
+    ;
+}
+
+h1 {
+    font-size: 6em;
+    color: rgb(40, 37, 47);
+    margin: 0px;
+    padding: 10px 10px 0px 20px;
+}
+
+h3 {
+    text-align: left;
+    font-size: 2em;
+    margin: 0px;
+    color: rgb(40, 37, 47);
+}
+
+h4 {
+    text-align: left;
+    padding: 10px;
+    margin: 0px;
+}
+
+a {
+    text-decoration: none;
+    color: unset;
+}
+
+label {
+    font-size: 0.8em;
+    text-align: left;
+    margin: 5px;
+}
+
+input {
+    margin: 3px 5px 3px 5px;
+    height: 1.5em;
+    border-radius: 5px;
+}
+
+button {
+    background-color: rgb(117, 255, 158);
+    border: none;
+    padding: 4px 12px 4px 12px;
+    margin: 5px;
+    font-size: 0.8em;
+}
+
+button:hover {
+    background-color: rgb(165, 255, 165);
+}
+
+ul {
+    list-style-type: none;
+    text-align: left;
+    overflow-x: unset;
+    padding: 5px 10px 5px 10px;
+    height: 61vh;
+    overflow-y: scroll;
+    border: 1px solid rgb(154, 151, 173);
+    background-color: rgb(88, 132, 212);
+}
+
+.login_control {
+    /* background-color: rgb(118, 166, 255); */
+    background-color: rgb(221, 247, 255);
+    color: rgb(40, 37, 47);
+    margin: 10px;
+    font-size: 1.2em;
+    width: 280px;
+}
+
+.article_list {
+    background-color: rgb(168, 198, 255);
+    padding: 20px 20px 10px 20px;
+    margin: 10px;
+    width: 60%;
+}
+
+.article_list_title {
+    margin: 0px;
+    padding: 0px;
+    font-size: 1.3em;
+    color: rgb(40, 37, 47);
+}
+
+.article_list_body {
+    font-size: 0.8em;
+}
+
+.article_list_item {
+    border: 2px solid rgb(164, 187, 255);
+    border-radius: 8px;
+    background-color: rgb(255, 255, 255);
+    margin: 4px;
+    padding: 7px;
+}
+
+.vote_button {
+    height: 30px;
+    width: 30px;
+    border-radius: 15px;
+    padding: 0px;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.article_container {
+    display: grid;
+    grid-template-columns: 1fr 8fr;
+    grid-template-rows: 1fr;
+    min-width: 700px;
+    width: 70%;
+}
+
+.article_date {
+    font-size: 0.8em;
+    color: rgb(70, 70, 70);
+    margin: 10px 0px 5px 0px;
+}
+
+.side_bar {
+    background-color: rgb(206, 223, 206);
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    align-items: center;
+    justify-items: center;
+    width: 80px;
+}
+
+.article {
+    font-size: 0.9em;
+    text-align: left;
+    overflow-x: unset;
+    padding: 10px 40px 10px 30px;
+    height: 65vh;
+    overflow-y: scroll;
+}
+
+.comments_section {
+    display: flex;
+    flex-direction: column;
+}
+
+.comment_side_bar {
+    background-color: rgb(194, 253, 255);
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    align-items: center;
+    justify-items: center;
+    width: 40px;
+    padding: 20px;
+}
+
+.comment {
+    display: grid;
+    grid-template-columns: 8fr 1fr;
+    grid-template-rows: 1fr;
+    border: 1px solid rgb(158, 229, 231);
+    background-color: rgb(221, 247, 255);
+    font-size: 0.8em;
+    margin: 10px 0px 10px 0px;
+    padding: 0px;
+}
+
+.comment_main {
+    padding: 20px;
+}
+
+.comment_user {
+    font-weight: bold;
+    margin-bottom: 10px;
+    padding: 0px;
+}
+
+.vote_count {
+    margin: 0px;
+    font-size: 0.9em;
+}

@@ -14,7 +14,7 @@ export default class SingleComment extends Component {
     render() {
         const { comment } = this.props;
         return (
-            <div className="comment" key={comment._id}>
+            <div className="comment" >
                 <div className="comment_main">
                     <span className="comment_user">{comment.created_by.username}</span>
                     <span className="comment_date"> {moment(comment.created_at).fromNow()}</span><br /><br />

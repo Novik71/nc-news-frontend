@@ -58,6 +58,30 @@ const fetchComments = (article_id) => {
         })
 }
 
+const addArticle = (title, body, created_by, topic) => {
+    const newPost = {
+        title, body, created_by
+    };
+    return axios.post(`${API_URL}/topics/${topic}/articles`, newPost)
+        .then(({ data }) => {
+            console.log(data)
+            return data;
+        })
+        .catch(console.log)
+}
+
+const addComment = (article_id, body, created_by) => {
+    const newComment = {
+        body, created_by
+    };
+    return axios.post(`${API_URL}/articles/${article_id}/comments`, newComment)
+        .then(({ data }) => {
+            console.log(data);
+            return data;
+        })
+        .catch(console.log)
+}
+
 export {
-    fetchSingleArticleAndComments, fetchArticles, voteArticle, voteComment
+    fetchSingleArticleAndComments, fetchArticles, voteArticle, voteComment, addArticle, addComment
 }

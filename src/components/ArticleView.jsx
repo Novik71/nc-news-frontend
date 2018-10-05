@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import CommentsSection from './CommentsSection';
 import SideBar from './SideBar';
-const api = require('../api');
+import * as api from '../api';
+import CommentAdd from './CommentAdd';
 
 export default class ArticleView extends Component {
 
@@ -27,10 +28,15 @@ export default class ArticleView extends Component {
                         <span className="article_date">{date}</span>
                         <p>{body}</p><br />
                         <CommentsSection handleVotes={() => { this.handleVotes() }} comments={this.state.comments} />
+                        <CommentAdd user={this.props.user} article_id={this.state.article._id} handleAddComment={() => { this.handleAddComment() }} />
                     </div>
                 </div >
             )
         }
+    }
+
+    handleAddComment = () => {
+
     }
 
     handleVote = (voteDir) => {
@@ -56,7 +62,10 @@ export default class ArticleView extends Component {
                 }
             })
     }
+}
 
-
+ArticleView.propTypes = {
+    user: PropTypes.object.isRequired,
+    match: PropTypes.object.isRequired
 }
 

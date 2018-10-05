@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { bodyPreview } from '../utils/utils';
 import ArticleSearch from './ArticleSearch';
+import TopicSelect from './TopicSelect';
 const api = require('../api');
 
 export default class ArticleList extends Component {
@@ -18,7 +19,8 @@ export default class ArticleList extends Component {
             <div className="article_list">
                 <h2 className="article_list_head">Most Popular {topicName} Articles</h2>
                 <span><ArticleSearch handleSubmit={this.handleSubmit} /></span>
-                {topic !== undefined && <button className="article_add_button"><Link to={`/topics/${topic}/articles/new`}>Post New {topicName} Article</Link></button>}
+                {topic && <button className="article_add_button"><Link to={`${topic}/articles/new`}>Create New {topicName} Article</Link></button>}
+                {!topic && <TopicSelect />}
                 <div className="article_list_scroll">
                     <ul>
                         {this.state.articles && this.state.articles.map(article => {
@@ -55,10 +57,6 @@ export default class ArticleList extends Component {
                     })
                 })
         }
-    }
-
-    handleAdd({ target }) {
-        console.log(target)
     }
 
     handleSubmit = (e) => {

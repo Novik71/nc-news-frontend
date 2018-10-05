@@ -43,7 +43,7 @@ h2 {
 
 h3 {
     text-align: left;
-    font-size: 2em;
+    font-size: 1.8em;
     margin: 0px;
     color: rgb(40, 37, 47);
 }
@@ -95,7 +95,7 @@ button:hover {
     display: grid;
     grid-template-columns: 1.5fr 2fr 2fr;
     grid-template-rows: 60px 35px auto;
-    grid-template-areas: "head head search" "add-button topic ." "scroll scroll scroll";
+    grid-template-areas: "head head search" "add-button . ." "scroll scroll scroll";
     background-color: rgb(221, 247, 255);
     padding: 20px 20px 10px 20px;
     margin: 20px;
@@ -129,11 +129,52 @@ button:hover {
 }
 
 .add_topic_select {
-    grid-area:
+    grid-area: add-button;
 }
 
 .article_list_scroll {
     grid-area: scroll;
+}
+
+.article_add_container {
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    grid-auto-rows: 60px auto 40px;
+    grid-template-areas: "heading username" "form form" ". post-button";
+    background-color: rgb(221, 247, 255);
+    padding: 20px 20px 10px 20px;
+    margin: 20px;
+    width: 50%;
+    min-width: 500px;
+}
+
+.article_add_form {
+    grid-area: form;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 4fr;
+    height: 450px;
+    margin: 10px;
+}
+
+title_input {
+    height: 30px;
+    width: 90%;
+    margin-bottom: 10px;
+}
+
+body_input {
+    height: auto;
+    width: 90%;
+    margin: 0px;
+}
+
+.post_button {
+    grid-area: post-button;
+    font-weight: bold;
+    height: 30px;
+    width: 80px;
+    margin: 0px;
 }
 
 ul {

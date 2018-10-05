@@ -1,6 +1,6 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 
-class ArticleSearch extends Component {
+export default class ArticleSearch extends Component {
 
     state = {
         currentText: ''
@@ -19,11 +19,7 @@ class ArticleSearch extends Component {
     }
 
     handleChange = (e) => {
-        return console.log(e.target, '<<<handleChange TARGET')
+        return console.log(e.target, '<<<handleChangetarget')
     }
 }
 
-ArticleSearch.propTypes = {
-};
-
-export default ArticleSearch;

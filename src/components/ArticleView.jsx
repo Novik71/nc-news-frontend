@@ -10,23 +10,23 @@ export default class ArticleView extends Component {
     state = {
         article: null,
         comments: [],
-        voteModifier: 0
+        fakeVotes: 0
     }
 
     render() {
         if (!this.state.article) return null;
         else {
-            const { title, created_by, created_at, body, votes } = this.state.article;
+            const { title, created_by, created_at, body } = this.state.article;
             const date = moment(created_at).format("Do MMMM YYYY");
             return (
                 <div className="article_container">
-                    <SideBar votes={votes} handleVote={this.handleVote} voteModifier={this.state.voteModifier} />
+                    <SideBar handleVote={this.handleVote} fakeVotes={this.state.fakeVotes} />
                     <div className="article">
                         <h2>{title}</h2>
                         <span className="by_line">{`by ${created_by.name}`}</span><br />
                         <span className="article_date">{date}</span>
                         <p>{body}</p><br />
-                        <CommentsSection handleVotes={this.handleVotes} comments={this.state.comments} />
+                        <CommentsSection handleVotes={() => { this.handleVotes() }} comments={this.state.comments} />
                     </div>
                 </div >
             )
@@ -37,8 +37,10 @@ export default class ArticleView extends Component {
         const article_id = this.state.article._id;
         return api.voteArticle(voteDir, article_id)
             .then(() => {
-                return this.setState({
-                    voteModifier: voteDir === 'up' ? 1 : -1
+                const { fakeVotes } = this.state;
+                let newFakeVotes = voteDir === 'up' ? fakeVotes + 1 : fakeVotes - 1;
+                this.setState({
+                    fakeVotes: newFakeVotes
                 })
             })
     }
@@ -49,19 +51,12 @@ export default class ArticleView extends Component {
             .then(([article, comments]) => {
                 if (article.hasOwnProperty('title')) {
                     return this.setState({
-                        article, comments
+                        article, comments, fakeVotes: article.votes
                     })
                 }
             })
     }
 
-    componentDidUpdate(prevProps, prevState) {
-        if (prevProps.article_id !== this.props.article_id
-            || prevState.voteModifier !== this.state.voteModifier) {
-            return this.setState({
-                article: { ...this.state.article, votes: prevState.article.votes + this.state.voteModifier }
-            })
-        }
-    }
+
 }
 

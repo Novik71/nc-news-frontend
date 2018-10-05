@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { bodyPreview } from '../utils/utils';
+import ArticleSearch from './ArticleSearch';
 const api = require('../api');
 
 export default class ArticleList extends Component {
@@ -11,13 +12,16 @@ export default class ArticleList extends Component {
     }
 
     render() {
-        const topicName = this.props.topic ? this.props.topic.replace(/^\w/, c => c.toUpperCase()) : '';
+        const { topic } = this.props;
+        const topicName = topic ? topic.replace(/^\w/, c => c.toUpperCase()) : '';
         return (
             <div className="article_list">
-                <h3>Most Popular {topicName} Articles</h3>
-                <div >
+                <h2 className="article_list_head">Most Popular {topicName} Articles</h2>
+                <span><ArticleSearch handleSubmit={this.handleSubmit} /></span>
+                {topic !== undefined && <button className="article_add_button"><Link to={`/topics/${topic}/articles/new`}>Post New {topicName} Article</Link></button>}
+                <div className="article_list_scroll">
                     <ul>
-                        {this.state.articles.map(article => {
+                        {this.state.articles && this.state.articles.map(article => {
                             return (
                                 <li className="article_list_item" key={article._id} >
                                     <Link to={`/articles/${article._id}`}>
@@ -51,6 +55,14 @@ export default class ArticleList extends Component {
                     })
                 })
         }
+    }
+
+    handleAdd({ target }) {
+        console.log(target)
+    }
+
+    handleSubmit = (e) => {
+        return console.log(e, '<<**<<')
     }
 }
 

@@ -8,7 +8,7 @@ const api = require('../api');
 export default class SingleComment extends Component {
 
     state = {
-        voteModifier: 0
+        fakeVotes: 0
     }
 
     render() {
@@ -20,23 +20,25 @@ export default class SingleComment extends Component {
                     <span className="comment_date"> {moment(comment.created_at).fromNow()}</span><br /><br />
                     {comment.body}
                 </div>
-                <SideBar handleVote={this.handleVote} votes={comment.votes} voteModifier={this.state.voteModifier} />
+                <SideBar handleVote={this.handleVote} fakeVotes={this.state.fakeVotes} />
             </div>
         )
     }
 
-    componentDidUpdate(prevProps, prevState) {
-        if (prevState.voteModifier !== this.state.voteModifier) {
-            return console.log(this.state.voteModifier)
-        }
+    componentDidMount() {
+        this.setState({
+            fakeVotes: this.props.comment.votes
+        })
     }
 
     handleVote = (voteDir) => {
         const comment_id = this.props.comment._id;
         return api.voteComment(voteDir, comment_id)
             .then(() => {
-                return this.setState({
-                    voteModifier: voteDir === 'up' ? 1 : -1
+                const { fakeVotes } = this.state;
+                let newFakeVotes = voteDir === 'up' ? fakeVotes + 1 : fakeVotes - 1;
+                this.setState({
+                    fakeVotes: newFakeVotes
                 })
             })
     }

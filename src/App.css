@@ -2,14 +2,12 @@
     display: grid;
     text-align: center;
     padding: 0px;
-    /* background-color: rgb(24, 139, 134); */
 }
 
 .app_head_grid {
     display: grid;
     grid-template-columns: 1fr 4fr;
     background-color: rgb(117, 255, 158);
-    /* background-color: rgb(168, 198, 255); */
 }
 
 .app_head_inner_grid {
@@ -21,7 +19,14 @@ nav {
     padding: 0px 0px 10px 20px;
     font-size: 1.8em;
     color: rgb(40, 37, 47);
-    ;
+}
+
+.nav_link {
+    color: rgb(40, 37, 47);
+}
+
+.nav_link:active {
+    color: rgb(26, 26, 141);
 }
 
 h1 {
@@ -29,6 +34,11 @@ h1 {
     color: rgb(40, 37, 47);
     margin: 0px;
     padding: 10px 10px 0px 20px;
+}
+
+h2 {
+    font-size: 2.5em;
+    line-height: 1.3em;
 }
 
 h3 {
@@ -73,19 +83,7 @@ button:hover {
     background-color: rgb(165, 255, 165);
 }
 
-ul {
-    list-style-type: none;
-    text-align: left;
-    overflow-x: unset;
-    padding: 5px 10px 5px 10px;
-    height: 61vh;
-    overflow-y: scroll;
-    border: 1px solid rgb(154, 151, 173);
-    background-color: rgb(88, 132, 212);
-}
-
 .login_control {
-    /* background-color: rgb(118, 166, 255); */
     background-color: rgb(221, 247, 255);
     color: rgb(40, 37, 47);
     margin: 10px;
@@ -94,10 +92,23 @@ ul {
 }
 
 .article_list {
-    background-color: rgb(168, 198, 255);
+    display: grid;
+    grid-template-columns: 1.5fr 2fr 2fr;
+    grid-template-rows: 60px 35px auto;
+    grid-template-areas: "head head search" "add-button topic ." "scroll scroll scroll";
+    background-color: rgb(221, 247, 255);
     padding: 20px 20px 10px 20px;
-    margin: 10px;
-    width: 60%;
+    margin: 20px;
+    width: 50%;
+    min-width: 800px;
+}
+
+.article_list_head {
+    grid-area: head;
+    margin: 0px;
+    padding: 0px;
+    text-align: left;
+    font-size: 2em;
 }
 
 .article_list_title {
@@ -107,16 +118,43 @@ ul {
     color: rgb(40, 37, 47);
 }
 
+.article_search {
+    grid-area: search;
+}
+
+.article_add_button {
+    grid-area: add-button;
+    background-color: aquamarine;
+    height: 30px;
+}
+
+.add_topic_select {
+    grid-area:
+}
+
+.article_list_scroll {
+    grid-area: scroll;
+}
+
+ul {
+    list-style-type: none;
+    text-align: left;
+    overflow-x: unset;
+    padding: 5px 10px 5px 10px;
+    height: 61vh;
+    overflow-y: scroll;
+    background-color: rgb(206, 223, 206);
+}
+
 .article_list_body {
     font-size: 0.8em;
 }
 
 .article_list_item {
-    border: 2px solid rgb(164, 187, 255);
-    border-radius: 8px;
+    border: 1px solid rgb(198, 213, 255);
     background-color: rgb(255, 255, 255);
-    margin: 4px;
-    padding: 7px;
+    margin: 10px 10px 10px 10px;
+    padding: 8px;
 }
 
 .vote_button {
@@ -132,8 +170,9 @@ ul {
     display: grid;
     grid-template-columns: 1fr 8fr;
     grid-template-rows: 1fr;
-    min-width: 700px;
+    min-width: 800px;
     width: 70%;
+    margin: 20px;
 }
 
 .article_date {
@@ -153,11 +192,12 @@ ul {
 }
 
 .article {
-    font-size: 0.9em;
+    font-size: 1em;
+    line-height: 24px;
     text-align: left;
     overflow-x: unset;
     padding: 10px 40px 10px 30px;
-    height: 65vh;
+    height: 70vh;
     overflow-y: scroll;
 }
 
@@ -183,7 +223,8 @@ ul {
     grid-template-rows: 1fr;
     border: 1px solid rgb(158, 229, 231);
     background-color: rgb(221, 247, 255);
-    font-size: 0.8em;
+    font-size: 1em;
+    line-height: 20px;
     margin: 10px 0px 10px 0px;
     padding: 0px;
 }

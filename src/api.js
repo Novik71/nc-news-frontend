@@ -29,6 +29,7 @@ const fetchSingleArticleAndComments = (article_id) => {
 const voteArticle = (vote, article_id) => {
     return axios.patch(`${API_URL}/articles/${article_id}?vote=${vote}`)
         .then(({ data }) => {
+            console.log(data.article.votes, '<<<<<<<<<<<<')
             return data.article.votes;
         })
         .catch(console.log)
@@ -37,6 +38,7 @@ const voteArticle = (vote, article_id) => {
 const voteComment = (vote, comment_id) => {
     return axios.patch(`${API_URL}/comments/${comment_id}?vote=${vote}`)
         .then(({ data }) => {
+            console.log(data.comment.votes, '<<<<<<<<')
             return data.comment.votes;
         })
         .catch(console.log)

@@ -25,6 +25,12 @@ nav {
     color: rgb(40, 37, 47);
 }
 
+.nav_link:hover {
+    transition: 500ms;
+    background-color: rgb(212, 255, 171);
+    border-bottom: 2px solid black;
+}
+
 .nav_link:active {
     color: rgb(26, 26, 141);
 }
@@ -75,12 +81,16 @@ button {
     background-color: rgb(117, 255, 158);
     border: none;
     padding: 4px 12px 4px 12px;
-    margin: 5px;
-    font-size: 0.8em;
+    margin: 0px 0px 0px 10px;
+    font-size: 1.2em;
+    cursor: pointer;
 }
 
 button:hover {
-    background-color: rgb(165, 255, 165);
+    background-color: rgb(213, 255, 134);
+    transform: scale(1.02);
+    transition: 500ms;
+    border: 1px solid rgb(64, 136, 98);
 }
 
 .login_control {
@@ -89,6 +99,13 @@ button:hover {
     margin: 10px;
     font-size: 1.2em;
     width: 280px;
+}
+
+.login_button {
+    font-size: 0.9em;
+    padding: 6px;
+    width: 80px;
+    align-self: right;
 }
 
 .article_list {
@@ -125,7 +142,9 @@ button:hover {
 .article_add_button {
     grid-area: add-button;
     background-color: aquamarine;
-    height: 30px;
+    height: 40px;
+    font-size: 0.9em;
+    margin-bottom: 10px;
 }
 
 .add_topic_select {
@@ -138,43 +157,53 @@ button:hover {
 
 .article_add_container {
     display: grid;
-    grid-template-columns: 4fr 1fr;
-    grid-auto-rows: 60px auto 40px;
-    grid-template-areas: "heading username" "form form" ". post-button";
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-auto-rows: 1fr 5fr 1fr;
+    grid-template-areas: "heading current-topic posting-as" "form form form" ". . post-button";
     background-color: rgb(221, 247, 255);
-    padding: 20px 20px 10px 20px;
+    padding: 20px;
     margin: 20px;
     width: 50%;
     min-width: 500px;
+}
+
+.current_topic {
+    grid-area: current-topic;
+}
+
+article_add_heading {
+    grid-area: heading;
+}
+
+posting_as {
+    grid-area: posting-as;
 }
 
 .article_add_form {
     grid-area: form;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 4fr;
-    height: 450px;
-    margin: 10px;
+    grid-template-rows: 1fr 5fr;
+    grid-template-areas: "title-input" "body-input"
 }
 
 title_input {
-    height: 30px;
-    width: 90%;
+    grid-area: title-input;
+    font-size: 1.2em;
+    height: 1.4em;
     margin-bottom: 10px;
 }
 
 body_input {
-    height: auto;
-    width: 90%;
-    margin: 0px;
+    grid-area: body-input;
+    margin: 20px;
 }
 
 .post_button {
     grid-area: post-button;
-    font-weight: bold;
-    height: 30px;
-    width: 80px;
-    margin: 0px;
+    font-size: 18px;
+    height: 35px;
+    margin: 20px;
 }
 
 ul {
@@ -196,6 +225,12 @@ ul {
     background-color: rgb(255, 255, 255);
     margin: 10px 10px 10px 10px;
     padding: 8px;
+}
+
+.article_list_item:hover {
+    transform: scale(1.03);
+    transition: 500ms;
+    border: 1px solid rgb(83, 98, 57);
 }
 
 .vote_button {
@@ -278,6 +313,13 @@ ul {
     font-weight: bold;
     margin-bottom: 10px;
     padding: 0px;
+}
+
+.comment_body_input {
+    height: 100px;
+    width: 95%;
+    margin: 15px;
+    font-size: 1.2em;
 }
 
 .vote_count {

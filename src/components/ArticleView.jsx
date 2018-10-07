@@ -11,7 +11,7 @@ export default class ArticleView extends Component {
     state = {
         article: null,
         comments: [],
-        fakeVotes: 0
+        fakeVotes: 0,
     }
 
     render() {
@@ -28,15 +28,17 @@ export default class ArticleView extends Component {
                         <span className="article_date">{date}</span>
                         <p>{body}</p><br />
                         <CommentsSection handleVotes={() => { this.handleVotes() }} comments={this.state.comments} />
-                        <CommentAdd user={this.props.user} article_id={this.state.article._id} handleAddComment={() => { this.handleAddComment() }} />
+                        <CommentAdd loggedInUser={this.props.loggedInUser} article_id={this.state.article._id} handleAddComment={this.handleAddComment} />
                     </div>
                 </div >
             )
         }
     }
 
-    handleAddComment = () => {
-
+    handleAddComment = (newComment) => {
+        return this.setState({
+            comments: this.state.comments.concat(newComment)
+        })
     }
 
     handleVote = (voteDir) => {
@@ -62,10 +64,33 @@ export default class ArticleView extends Component {
                 }
             })
     }
+
+    componentDidUpdate(prevProps, prevState) {
+        const { article_id } = this.props.match.params;
+        if (this.state.newComments !== prevState.newComments) {
+            return api.fetchSingleArticleAndComments(article_id)
+                .then(([article, comments]) => {
+                    if (article.hasOwnProperty('title')) {
+                        return this.setState({
+                            article, comments, fakeVotes: article.votes
+                        })
+                    }
+                })
+        } else if (this.props.loggedInUser) {
+            return api.fetchSingleArticleAndComments(article_id)
+                .then(([article, comments]) => {
+                    if (article.hasOwnProperty('title')) {
+                        return this.setState({
+                            article, comments, fakeVotes: article.votes
+                        })
+                    }
+                })
+        }
+    }
 }
 
 ArticleView.propTypes = {
-    user: PropTypes.object.isRequired,
+    loggedInUser: PropTypes.object.isRequired,
     match: PropTypes.object.isRequired
 }
 

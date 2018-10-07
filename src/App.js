@@ -11,20 +11,14 @@ import ArticleAdd from './components/ArticleAdd';
 class App extends Component {
 
   state = {
-    loggedInUser: {
-      "_id": "5b9bdc48dbaa521fe7e020d8",
-      "username": "tickle122",
-      "name": "Tom Tickle",
-      "avatar_url": "https://www.spiritsurfers.net/monastery/wp-content/uploads/_41500270_mrtickle.jpg",
-      "__v": 0
-    }
+    loggedInUser: null
   }
 
   render() {
     return (
       <div className="App">
         <div className="app_head_grid">
-          <LoginControl />
+          <LoginControl logInUser={this.logInUser} loggedInUser={this.state.loggedInUser} />
           <div className="app_head_inner_grid"><h1><Link to='/'>nc news</Link></h1>
             <TopicNav />
           </div>
@@ -33,13 +27,20 @@ class App extends Component {
         <Switch>
           <Route exact path='/' component={Home} />
           <Route exact path='/topics/:topic' render={({ match }) => <TopicPage match={match} />} />
-          <Route exact path='/topics/:topic_id/articles/new' render={({ match }) => <ArticleAdd user={this.state.loggedInUser} match={match} />} />
-          <Route path='/articles/:article_id' render={({ match }) => <ArticleView match={match} user={this.state.loggedInUser} />} />
+          <Route exact path='/topics/:topic_id/articles/new' render={({ match }) => <ArticleAdd loggedInUser={this.state.loggedInUser} match={match} />} />
+          <Route path='/articles/:article_id' render={({ match }) => <ArticleView match={match} loggedInUser={this.state.loggedInUser} />} />
         </Switch>
 
       </div>
     );
   }
+
+  logInUser = (user) => {
+    this.setState({
+      loggedInUser: user
+    })
+  }
+
 }
 
 export default App;

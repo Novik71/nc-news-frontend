@@ -19,7 +19,7 @@ export default class ArticleList extends Component {
             <div className="article_list">
                 <h2 className="article_list_head">Most Popular {topicName} Articles</h2>
                 <span><ArticleSearch handleSubmit={this.handleSubmit} /></span>
-                {topic && <button className="article_add_button"><Link to={`${topic}/articles/new`}>Create New {topicName} Article</Link></button>}
+                {topic && <button className="article_add_button"><Link to={`${topic}/articles/new`}>+ New {topicName} Article</Link></button>}
                 {!topic && <TopicSelect />}
                 <div className="article_list_scroll">
                     <ul>

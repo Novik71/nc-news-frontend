@@ -4,15 +4,15 @@ import * as api from '../api'
 
 export default class CommentAdd extends Component {
     state = {
-        body: ''
+        body: '',
     }
     render() {
         return (
             <div className="comment_add_container">
                 <form className="comment_add_form">
-                    <textarea className="comment_body_input" placeholder="Add a comment..." onChange={this.handleBodyChange} />
+                    <textarea className="comment_body_input" placeholder={this.props.loggedInUser ? "Add a comment..." : "You must be logged in to comment"} value={this.state.body} onChange={this.handleBodyChange} />
                 </form>
-                <button className="post_button" onClick={this.handlePost}>Post</button>
+                <button className="post_button" disabled={!this.props.loggedInUser ? true : false} onClick={this.props.loggedInUser ? this.handlePost : this.notice}>Post Comment</button>
             </div>
         );
     }
@@ -27,18 +27,19 @@ export default class CommentAdd extends Component {
     handlePost = () => {
         const { article_id } = this.props;
         const { body } = this.state;
-        const created_by = this.props.user._id;
-        return api.addComment(article_id, body, created_by)
-            .then(() => {
-                this.setState({
-                    body: ''
-                })
+        const created_by = this.props.loggedInUser._id;
+        api.addComment(article_id, body, created_by)
+            .then((newComment) => {
+                return this.props.handleAddComment(newComment)
             })
+        this.setState({
+            body: ''
+        })
     }
 }
 
 CommentAdd.propTypes = {
-    user: PropTypes.object.isRequired,
+    loggedInUser: PropTypes.object.isRequired,
     article_id: PropTypes.string.isRequired,
     handleAddComment: PropTypes.func.isRequired
 };

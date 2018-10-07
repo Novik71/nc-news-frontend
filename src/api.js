@@ -29,8 +29,7 @@ const fetchSingleArticleAndComments = (article_id) => {
 const voteArticle = (vote, article_id) => {
     return axios.patch(`${API_URL}/articles/${article_id}?vote=${vote}`)
         .then(({ data }) => {
-            console.log(data.article.votes, '<<<<<<<<<<<<')
-            return data.article.votes;
+            return data;
         })
         .catch(console.log)
 }
@@ -58,6 +57,13 @@ const fetchComments = (article_id) => {
         })
 }
 
+const fetchUsers = () => {
+    return axios.get(`${API_URL}/users`)
+        .then(({ data }) => {
+            return data.users;
+        })
+}
+
 const addArticle = (title, body, created_by, topic) => {
     const newPost = {
         title, body, created_by
@@ -76,12 +82,11 @@ const addComment = (article_id, body, created_by) => {
     };
     return axios.post(`${API_URL}/articles/${article_id}/comments`, newComment)
         .then(({ data }) => {
-            console.log(data);
-            return data;
+            return data.new_comment;
         })
         .catch(console.log)
 }
 
 export {
-    fetchSingleArticleAndComments, fetchArticles, voteArticle, voteComment, addArticle, addComment
+    fetchSingleArticleAndComments, fetchArticles, fetchUsers, voteArticle, voteComment, addArticle, addComment
 }

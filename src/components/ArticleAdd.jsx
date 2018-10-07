@@ -15,12 +15,14 @@ export default class ArticleAdd extends Component {
         const topicName = topic ? topic.replace(/^\w/, c => c.toUpperCase()) : '';
         return (
             <div className="article_add_container">
-                <span grid-area="heading"><h3>Post a New Article</h3><span className="current_topic">Topic: {topicName}</span></span><span>Posting as <strong>{this.props.user.username}</strong></span>
+                <h3 className="article_add_heading">Post Article</h3><span className="current_topic">Topic: {topicName}</span>
+                {this.props.loggedinUser && <span className="posting_as">Posting as <strong>{this.props.loggedinUser.username}</strong></span>}
+                {!this.props.loggedInUser && <span className="posting_as"><strong>Please log in to post</strong></span>}
                 <form className="article_add_form">
                     <div className="title_input"><label>Title:</label><textarea onChange={this.handleTitleChange} /></div>
                     <textarea className="body_input" onChange={this.handleBodyChange}></textarea>
                 </form>
-                <button className="post_button" onClick={this.handlePost}>Post</button>
+                <button className="post_button" disabled={!this.props.loggedInUser ? true : false} onClick={this.handlePost}>Post</button>
             </div>
         )
     }
@@ -49,6 +51,6 @@ export default class ArticleAdd extends Component {
 }
 
 ArticleAdd.propTypes = {
-    user: PropTypes.object.isRequired,
+    loggedinUser: PropTypes.object,
     match: PropTypes.object.isRequired
 }

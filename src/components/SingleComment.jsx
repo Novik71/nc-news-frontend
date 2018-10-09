@@ -13,14 +13,20 @@ export default class SingleComment extends Component {
 
     render() {
         const { comment } = this.props;
+        const { loggedInUser } = this.props;
+        let ownComment;
+        if (loggedInUser) {
+            ownComment = loggedInUser.username === comment.created_by.username ? true : false
+        }
         return (
             <div className="comment" >
                 <div className="comment_main">
                     <span className="comment_user">{comment.created_by.username}</span>
-                    <span className="comment_date"> {moment(comment.created_at).fromNow()}</span><br /><br />
-                    {comment.body}
+                    <span className="comment_date"> {moment(comment.created_at).fromNow()}</span>
+                    <span><button id="comment_delete_button" hidden={ownComment ? false : true}>Delete</button></span><br />
+                    <p className="comment_body">{comment.body}</p>
                 </div>
-                <SideBar handleVote={this.handleVote} fakeVotes={this.state.fakeVotes} />
+                <SideBar loggedInUser={this.props.loggedInUser} handleVote={this.handleVote} fakeVotes={this.state.fakeVotes} />
             </div>
         )
     }
@@ -32,19 +38,22 @@ export default class SingleComment extends Component {
     }
 
     handleVote = (voteDir) => {
-        const comment_id = this.props.comment._id;
-        return api.voteComment(voteDir, comment_id)
-            .then(() => {
-                const { fakeVotes } = this.state;
-                let newFakeVotes = voteDir === 'up' ? fakeVotes + 1 : fakeVotes - 1;
-                this.setState({
-                    fakeVotes: newFakeVotes
+        if (this.props.loggedInUser) {
+            const comment_id = this.props.comment._id;
+            return api.voteComment(voteDir, comment_id)
+                .then(() => {
+                    const { fakeVotes } = this.state;
+                    let newFakeVotes = voteDir === 'up' ? fakeVotes + 1 : fakeVotes - 1;
+                    this.setState({
+                        fakeVotes: newFakeVotes
+                    })
                 })
-            })
+        }
     }
 }
 
 SingleComment.propTypes = {
     comment: PropTypes.object,
-    key: PropTypes.string
+    key: PropTypes.string,
+    loggedInUser: PropTypes.object
 }

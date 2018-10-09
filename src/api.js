@@ -37,8 +37,7 @@ const voteArticle = (vote, article_id) => {
 const voteComment = (vote, comment_id) => {
     return axios.patch(`${API_URL}/comments/${comment_id}?vote=${vote}`)
         .then(({ data }) => {
-            console.log(data.comment.votes, '<<<<<<<<')
-            return data.comment.votes;
+            return data.comment;
         })
         .catch(console.log)
 }

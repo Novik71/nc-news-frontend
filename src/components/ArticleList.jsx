@@ -59,9 +59,6 @@ export default class ArticleList extends Component {
         }
     }
 
-    handleSubmit = (e) => {
-        return console.log(e, '<<**<<')
-    }
 }
 
 ArticleList.propTypes = {

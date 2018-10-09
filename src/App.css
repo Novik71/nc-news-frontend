@@ -86,7 +86,7 @@ button {
     cursor: pointer;
 }
 
-button:hover {
+button:hover:enabled {
     background-color: rgb(213, 255, 134);
     transform: scale(1.02);
     transition: 500ms;
@@ -312,13 +312,30 @@ ul {
 .comment_user {
     font-weight: bold;
     margin-bottom: 10px;
-    padding: 0px;
+    padding: 0px 10px 0px 0px;
+}
+
+#comment_delete_button {
+    font-size: 0.8em;
+    color: rgb(255, 255, 255);
+    height: auto;
+    width: auto;
+    border-radius: 3px;
+    background-color: rgba(255, 58, 58, 0.685);
+    margin-left: 10px;
+}
+
+#comment_delete_button:hover {
+    transition: none;
+    transform: none;
+    border: 1px solid rgb(51, 12, 12);
+    background-color: rgb(255, 56, 56);
 }
 
 .comment_body_input {
     height: 100px;
     width: 95%;
-    margin: 15px;
+    margin: 0px 10px 0px 10px;
     font-size: 1.2em;
 }
 

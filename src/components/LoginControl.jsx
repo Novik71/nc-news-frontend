@@ -14,9 +14,9 @@ export default class LoginControl extends Component {
             return (
                 <div className="login_control">
                     <h4><strong>Login</strong></h4>
-                    <form onChange={this.handleChange}>
-                        <label>Username:<input type="text" name="username" value={this.state.username} /></label><br />
-                        <label>Password:<input type="password" name="password" value={this.state.password} /></label><br />
+                    <form >
+                        <label>Username:<input type="text" name="username" onChange={this.handleChange} value={this.state.username} /></label><br />
+                        <label>Password:<input type="password" name="password" onChange={this.handleChange} value={this.state.password} /></label><br />
                         <button className="login_button" onClick={this.handleLogin}>Login</button><br />
                     </form>
                 </div>

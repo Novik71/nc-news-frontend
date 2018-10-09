@@ -15,7 +15,7 @@ export default class ArticleAdd extends Component {
         const topicName = topic ? topic.replace(/^\w/, c => c.toUpperCase()) : '';
         return (
             <div className="article_add_container">
-                <h3 className="article_add_heading">Post Article</h3><span className="current_topic">Topic: {topicName}</span>
+                <h3 className="article_add_heading">Post Article</h3><span className="current_topic">Topic: {topicName ? topicName : 'Coding'}</span>
                 {this.props.loggedinUser && <span className="posting_as">Posting as <strong>{this.props.loggedinUser.username}</strong></span>}
                 {!this.props.loggedInUser && <span className="posting_as"><strong>Please log in to post</strong></span>}
                 <form className="article_add_form">
@@ -44,7 +44,7 @@ export default class ArticleAdd extends Component {
     handlePost = () => {
         const topic = this.props.match.params.topic_id;
         const { title, body } = this.state;
-        const created_by = this.props.user._id;
+        const created_by = this.props.loggedInUser._id;
         return api.addArticle(title, body, created_by, topic)
     }
 

@@ -39,7 +39,7 @@ export default class CommentAdd extends Component {
 }
 
 CommentAdd.propTypes = {
-    loggedInUser: PropTypes.object.isRequired,
+    loggedInUser: PropTypes.object,
     article_id: PropTypes.string.isRequired,
     handleAddComment: PropTypes.func.isRequired
 };

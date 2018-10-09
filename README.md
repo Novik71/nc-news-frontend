@@ -21,6 +21,7 @@ Below is a list of the Node.js modules used in the development of this project, 
 * Axios (version 0.18.0)
 * Cors (version 2.8.4)
 * Moment (version 2.22.2)
+* Lodash (version 4.17.11)
 
 To install all the modules in one go, go to your root directory and run the following command in your terminal install them locally.
 

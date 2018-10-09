@@ -13,13 +13,16 @@ https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubunt
 It is recommended to also install the latest version of [VS Code](https://code.visualstudio.com) and VS Code [Chrome Debugger Extension](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome).
 
 ## Installation and Setup
-Below is a list of the Node.js modules used in the development of this project:
+Below is a list of the Node.js modules used in the development of this project, and the minimum versions required:
 
-* react
-* react-router-dom
-* axios
+* React / React-Dom (version 16.5.2)
+* React-Router-Dom (version 4.3.1)
+* React-Scripts (version 2.0.3)
+* Axios (version 0.18.0)
+* Cors (version 2.8.4)
+* Moment (version 2.22.2)
 
-To install all the modules, go to your root directory and run the following command in your terminal install them locally.
+To install all the modules in one go, go to your root directory and run the following command in your terminal install them locally.
 
 ```http
 $ npm install
@@ -36,8 +39,7 @@ In the project directory, you can run:
 $ npm start
 ```
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Runs the app in the development mode. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.

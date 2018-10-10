@@ -7,7 +7,7 @@
 .app_head_grid {
     display: grid;
     grid-template-columns: 1fr 4fr;
-    background-color: rgb(117, 255, 158);
+    background-color: aquamarine;
 }
 
 .app_head_inner_grid {
@@ -27,7 +27,7 @@ nav {
 
 .nav_link:hover {
     transition: 500ms;
-    background-color: rgb(212, 255, 171);
+    background-color: rgb(213, 255, 134);
     border-bottom: 2px solid black;
 }
 
@@ -37,7 +37,9 @@ nav {
 
 h1 {
     font-size: 6em;
-    color: rgb(40, 37, 47);
+    /* color: rgb(40, 37, 47); */
+    color: rgb(213, 255, 134);
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
     margin: 0px;
     padding: 10px 10px 0px 20px;
 }
@@ -78,7 +80,7 @@ input {
 }
 
 button {
-    background-color: rgb(117, 255, 158);
+    background-color: aquamarine;
     border: none;
     padding: 4px 12px 4px 12px;
     margin: 0px 0px 0px 10px;
@@ -116,8 +118,7 @@ button:hover:enabled {
     background-color: rgb(221, 247, 255);
     padding: 20px 20px 10px 20px;
     margin: 20px;
-    width: 50%;
-    min-width: 800px;
+    max-width: 800px;
 }
 
 .article_list_head {

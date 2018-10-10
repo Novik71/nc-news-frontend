@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import CommentsSection from './CommentsSection';
@@ -18,13 +19,19 @@ export default class ArticleView extends Component {
     render() {
         if (!this.state.article) return null;
         else {
-            const { title, created_by, created_at, body } = this.state.article;
+            const { title, created_by, created_at, body, _id } = this.state.article;
             const date = moment(created_at).format("Do MMMM YYYY");
+            const { loggedInUser } = this.props;
+            let ownArticle;
+            if (loggedInUser) {
+                ownArticle = loggedInUser.username === created_by.username ? true : false
+            }
             return (
                 <div className="article_container">
                     <SideBar handleVote={this.handleVote} loggedInUser={this.props.loggedInUser} fakeVotes={this.state.fakeVotes} />
                     <div className="article">
                         <h2>{title}</h2>
+                        <span><button id="article_delete_button" onClick={() => this.handleDelete(_id)} hidden={ownArticle ? false : true}>Delete</button></span><br />
                         <span className="by_line">{`by ${created_by.name}`}</span><br />
                         <span className="article_date">{date}</span>
                         <p>{body}</p><br />
@@ -54,6 +61,11 @@ export default class ArticleView extends Component {
                     })
                 })
         }
+    }
+
+    handleDelete = (article_id) => {
+        return api.deleteArticle(article_id)
+        .then()
     }
 
     componentDidMount() {

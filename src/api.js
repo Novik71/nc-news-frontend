@@ -68,9 +68,8 @@ const addArticle = (title, body, created_by, topic) => {
         title, body, created_by
     };
     return axios.post(`${API_URL}/topics/${topic}/articles`, newPost)
-        .then(({ data }) => {
-            console.log(data)
-            return data;
+        .then((response) => {
+            return response;
         })
         .catch(console.log)
 }
@@ -86,6 +85,23 @@ const addComment = (article_id, body, created_by) => {
         .catch(console.log)
 }
 
+const deleteComment = (comment_id) => {
+    return axios.delete(`${API_URL}/comments/${comment_id}`)
+        .then(({ data }) => {
+            console.log(data);
+        })
+        .catch(console.log)
+}
+
+const deleteArticle = (article_id) => {
+    return axios.delete(`${API_URL}/articles/${article_id}`)
+        .then(({ data }) => {
+            console.log(data);
+            return 
+        })
+        .catch(console.log)
+}
+
 export {
-    fetchSingleArticleAndComments, fetchArticles, fetchUsers, voteArticle, voteComment, addArticle, addComment
+    fetchSingleArticleAndComments, fetchArticles, fetchUsers, voteArticle, voteComment, addArticle, deleteArticle, addComment, deleteComment
 }

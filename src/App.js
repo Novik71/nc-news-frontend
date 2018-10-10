@@ -7,6 +7,7 @@ import ArticleView from './components/ArticleView';
 import LoginControl from './components/LoginControl';
 import TopicNav from './components/TopicNav';
 import ArticleAdd from './components/ArticleAdd';
+import ErrorPage from './components/ErrorPage';
 
 class App extends Component {
 
@@ -29,7 +30,9 @@ class App extends Component {
           <Route exact path='/topics/:topic' render={({ match }) => <TopicPage match={match} />} />
           <Route exact path='/topics/:topic_id/articles/new' render={({ match }) => <ArticleAdd loggedInUser={this.state.loggedInUser} match={match} />} />
           <Route path='/articles/:article_id' render={({ match }) => <ArticleView match={match} loggedInUser={this.state.loggedInUser} />} />
+          <Route path='/error' />
         </Switch>
+
 
       </div>
     );

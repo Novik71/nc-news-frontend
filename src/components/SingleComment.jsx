@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import SideBar from './SideBar'
 import moment from 'moment'
-const api = require('../api');
+import * as api from '../api';
 
 
 export default class SingleComment extends Component {
@@ -21,9 +21,10 @@ export default class SingleComment extends Component {
         return (
             <div className="comment" >
                 <div className="comment_main">
+                    <span><button id="comment_delete_button" onClick={() => this.handleDelete(comment._id)} hidden={ownComment ? false : true}>Delete</button></span><br />
                     <span className="comment_user">{comment.created_by.username}</span>
                     <span className="comment_date"> {moment(comment.created_at).fromNow()}</span>
-                    <span><button id="comment_delete_button" hidden={ownComment ? false : true}>Delete</button></span><br />
+                    <span><button id="comment_delete_button" onClick={() => this.handleDelete(comment._id)} hidden={ownComment ? false : true}>Delete</button></span><br />
                     <p className="comment_body">{comment.body}</p>
                 </div>
                 <SideBar loggedInUser={this.props.loggedInUser} handleVote={this.handleVote} fakeVotes={this.state.fakeVotes} />
@@ -49,6 +50,10 @@ export default class SingleComment extends Component {
                     })
                 })
         }
+    }
+
+    handleDelete = (comment_id) => {
+        return api.deleteComment(comment_id);
     }
 }
 

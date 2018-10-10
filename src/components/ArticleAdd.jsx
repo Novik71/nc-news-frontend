@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types'
 import * as api from '../api';
 
@@ -46,6 +47,17 @@ export default class ArticleAdd extends Component {
         const { title, body } = this.state;
         const created_by = this.props.loggedInUser._id;
         return api.addArticle(title, body, created_by, topic)
+            .then(({ data, status }) => {
+                if (status === 201) return this.handleRedirect(data._doc._id);
+            })
+            .catch(err => console.log(err))
+    }
+
+    handleRedirect = (id) => {
+        console.log(id, '<<<<')
+        return (
+            <Redirect to={`/articles/${id}`} />
+        )
     }
 
 }

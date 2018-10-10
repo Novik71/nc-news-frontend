@@ -65,7 +65,14 @@ export default class ArticleView extends Component {
 
     handleDelete = (article_id) => {
         return api.deleteArticle(article_id)
-        .then()
+            .then(([data, status]) => {
+                if (/^2+/gm.test(status)) {
+                    console.log('yay it deleted')
+                    return (
+                        <Redirect to='/' />
+                    )
+                }
+            })
     }
 
     componentDidMount() {
@@ -106,6 +113,6 @@ export default class ArticleView extends Component {
 
 ArticleView.propTypes = {
     loggedInUser: PropTypes.object,
-    match: PropTypes.object.isRequired
+    match: PropTypes.object.isRequired,
 }
 

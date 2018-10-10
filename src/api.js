@@ -1,5 +1,5 @@
 const axios = require('axios');
-const API_URL = 'http://localhost:9090/api/'
+const API_URL = 'http://localhost:9090/api'
 
 const fetchArticles = (topic) => {
     if (topic === undefined) {
@@ -95,9 +95,8 @@ const deleteComment = (comment_id) => {
 
 const deleteArticle = (article_id) => {
     return axios.delete(`${API_URL}/articles/${article_id}`)
-        .then(({ data }) => {
-            console.log(data);
-            return 
+        .then(({ data, status }) => {
+            return [data, status];
         })
         .catch(console.log)
 }

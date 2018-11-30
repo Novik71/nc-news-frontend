@@ -3,15 +3,15 @@ import { Link } from 'react-router-dom';
 
 export default class TopicSelect extends Component {
     state = {
-        selectedTopic: 'coding'
+        selectedTopic: 'technology'
     }
     render() {
         return (
             <div>
                 <form>
-                    <select className="topic_select" defaultValue="coding" onChange={this.setTopic}>
-                        <option value="coding">Coding</option>
-                        <option value="cooking">Cooking</option>
+                    <select className="topic_select" defaultValue="technology" onChange={this.setTopic}>
+                        <option value="technology">Technology</option>
+                        <option value="music">Music</option>
                         <option value="football">Football</option>
                     </select>
                     <button className="article_add_button"><Link to={`topics/${this.state.selectedTopic}/articles/new`}>Post New Article</Link></button>

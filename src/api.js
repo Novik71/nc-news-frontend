@@ -1,5 +1,5 @@
 const axios = require('axios');
-const API_URL = 'http://localhost:9090/api'
+const API_URL = 'https://nc-news-api-tps.herokuapp.com/api'
 
 const fetchArticles = (topic) => {
     if (topic === undefined) {

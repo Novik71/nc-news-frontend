@@ -13,18 +13,19 @@ export default class LoginControl extends Component {
         if (!this.props.loggedInUser) {
             return (
                 <div className="login_control">
-                    <h4><strong>Login</strong></h4>
-                    <form >
-                        <label>Username:<input type="text" name="username" onChange={this.handleChange} value={this.state.username} /></label><br />
-                        <label>Password:<input type="password" name="password" onChange={this.handleChange} value={this.state.password} /></label><br />
+                    <form className="login_form">
+                        <label for="username" id="username_label">Username:</label>
+                        <input id="username" type="text" name="username" onChange={this.handleChange} value={this.state.username} />
+                        <label for="password" id="password_label">Password:</label>
+                        <input id="password" type="password" name="password" onChange={this.handleChange} value={this.state.password} />
                         <button className="login_button" onClick={this.handleLogin}>Login</button><br />
                     </form>
                 </div>
             )
         } else {
-            return <div className="login_control">
-                <h5>Logged in as <strong>{this.props.loggedInUser.username}</strong></h5>
-                <button className="login_button" onClick={this.handleLogout}>Logout</button>
+            return <div className="login_control" id="login_info">
+                <h5 className="logged_in">Logged in as <strong>{this.props.loggedInUser.username}</strong></h5>
+                <button className="login_button" id="logout_button" onClick={this.handleLogout}>Logout</button>
             </div>
         }
     }

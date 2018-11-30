@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link, Route, Switch } from 'react-router-dom';
 import './App.css';
+import icon from './images/icon-large.png';
 import TopicPage from './components/TopicPage';
 import Home from './components/Home';
 import ArticleView from './components/ArticleView';
@@ -19,8 +20,9 @@ class App extends Component {
     return (
       <div className="App">
         <div className="app_head_grid">
+          <img className="icon" src={icon} alt="icon" />
           <LoginControl logInUser={this.logInUser} loggedInUser={this.state.loggedInUser} />
-          <div className="app_head_inner_grid"><h1><Link to='/'>nc news</Link></h1>
+          <div className="app_head_inner_grid" fontStyle="italic"><h1><Link to='/'>NC News</Link></h1>
             <TopicNav />
           </div>
         </div>

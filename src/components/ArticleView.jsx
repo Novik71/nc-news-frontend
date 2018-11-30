@@ -67,7 +67,7 @@ export default class ArticleView extends Component {
         return api.deleteArticle(article_id)
             .then(([data, status]) => {
                 if (/^2+/gm.test(status)) {
-                    console.log('yay it deleted')
+                    console.log('Article successfully deleted!')
                     return (
                         <Redirect to='/' />
                     )

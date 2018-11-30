@@ -1,356 +1,423 @@
 .App {
-    display: grid;
-    text-align: center;
-    padding: 0px;
+  display: grid;
+  text-align: center;
+  padding: 0px;
+  height: 100%;
 }
 
 .app_head_grid {
-    display: grid;
-    grid-template-columns: 1fr 4fr;
-    background-color: aquamarine;
+  display: grid;
+  grid-template-columns: 170px 440px;
+  grid-template-rows: 1fr 2.5fr;
+  grid-template-areas: "icon login" "icon inner-grid";
+  background-color: aquamarine;
 }
 
 .app_head_inner_grid {
-    text-align: left;
+  text-align: left;
+  min-width: 300px;
+  grid-area: inner-grid;
+}
+
+.home_page_container {
+  height: auto;
 }
 
 nav {
-    margin: 0px;
-    padding: 0px 0px 10px 20px;
-    font-size: 1.8em;
-    color: rgb(40, 37, 47);
+  margin: 0px;
+  padding: 0px;
+  font-size: 1.6em;
+  color: rgb(40, 37, 47);
 }
 
 .nav_link {
-    color: rgb(40, 37, 47);
+  color: rgb(40, 37, 47);
 }
 
 .nav_link:hover {
-    transition: 500ms;
-    background-color: rgb(213, 255, 134);
-    border-bottom: 2px solid black;
+  transition: 500ms;
+  background-color: rgb(213, 255, 134);
+  border-bottom: 2px solid black;
 }
 
 .nav_link:active {
-    color: rgb(26, 26, 141);
+  color: rgb(26, 26, 141);
+}
+
+.icon {
+  height: 9em;
+  width: auto;
+  margin: 15px 10px 15px 10px;
+  grid-area: icon;
 }
 
 h1 {
-    font-size: 6em;
-    /* color: rgb(40, 37, 47); */
-    color: rgb(213, 255, 134);
-    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-    margin: 0px;
-    padding: 10px 10px 0px 20px;
+  font-size: 5em;
+  /* color: rgb(40, 37, 47); */
+  color: rgb(213, 255, 134);
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  margin: 0px;
+  padding: 0;
 }
 
 h2 {
-    font-size: 2.5em;
-    line-height: 1.3em;
+  font-size: 2em;
+  line-height: 1.3em;
 }
 
 h3 {
-    text-align: left;
-    font-size: 1.8em;
-    margin: 0px;
-    color: rgb(40, 37, 47);
+  text-align: left;
+  font-size: 1.8em;
+  margin: 0px;
+  color: rgb(40, 37, 47);
 }
 
 h4 {
-    text-align: left;
-    padding: 10px;
-    margin: 0px;
+  text-align: left;
+  padding: 10px;
+  margin: 0px;
+}
+
+h5 {
+  font-size: 1em;
+  margin: 0px;
 }
 
 a {
-    text-decoration: none;
-    color: unset;
+  text-decoration: none;
+  color: unset;
 }
 
 label {
-    font-size: 0.8em;
-    text-align: left;
-    margin: 5px;
+  font-size: 0.8em;
+  text-align: left;
+  margin: 5px;
 }
 
 input {
-    margin: 3px 5px 3px 5px;
-    height: 1.5em;
-    border-radius: 5px;
+  margin: 3px 5px 3px 5px;
+  height: 1.5em;
+  width: 80px;
+  border-radius: 5px;
+  padding: 0px 0px 0px 4px
+}
+
+.logged_in {
+  grid-area: logged-in;
+}
+
+#login_form {
+  grid-area: form;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "user-label pass-label";
+}
+
+#username_label {
+  grid-area: user-label;
+}
+
+#password_label {
+  grid-area: pass-label;
 }
 
 button {
-    background-color: aquamarine;
-    border: none;
-    padding: 4px 12px 4px 12px;
-    margin: 0px 0px 0px 10px;
-    font-size: 1.2em;
-    cursor: pointer;
+  background-color: aquamarine;
+  border: none;
+  padding: 4px 12px 4px 12px;
+  margin: 5px;
+  font-size: 1.2em;
+  cursor: pointer;
 }
 
 button:hover:enabled {
-    background-color: rgb(213, 255, 134);
-    transform: scale(1.02);
-    transition: 500ms;
-    border: 1px solid rgb(64, 136, 98);
+  background-color: rgb(213, 255, 134);
+  transform: scale(1.02);
+  transition: 500ms;
+  border: 1px solid rgb(64, 136, 98);
 }
 
 .login_control {
-    background-color: rgb(221, 247, 255);
-    color: rgb(40, 37, 47);
-    margin: 10px;
-    font-size: 1.2em;
-    width: 280px;
+  background-color: rgb(221, 247, 255);
+  border: 2px solid rgb(127, 182, 192);
+  border-radius: 10px;
+  color: rgb(40, 37, 47);
+  margin-top: 5px;
+  padding: 4px;
+  font-size: 1em;
+  width: 410px;
+  max-height: 37px;
+  grid-area: login;
+  justify-items: left;
 }
 
 .login_button {
-    font-size: 0.9em;
-    padding: 6px;
-    width: 80px;
-    align-self: right;
+  font-size: 0.8em;
+  padding: 7px;
+  margin: 3px;
+  width: auto;
+  grid-area: login-button;
+}
+
+#logout_button {
+  grid-area: logout;
+}
+
+.login_info {
+  display: grid;
+  grid-template-columns: 7fr 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: "logged-in logout"
 }
 
 .article_list {
-    display: grid;
-    grid-template-columns: 1.5fr 2fr 2fr;
-    grid-template-rows: 60px 35px auto;
-    grid-template-areas: "head head search" "add-button . ." "scroll scroll scroll";
-    background-color: rgb(221, 247, 255);
-    padding: 20px 20px 10px 20px;
-    margin: 20px;
-    max-width: 800px;
+  display: grid;
+  grid-template-columns: 120px auto;
+  grid-template-rows: auto auto 100%;
+  grid-template-areas: "head head" "add-button search" "scroll scroll";
+  background-color: rgb(221, 247, 255);
+  padding: 20px 20px 10px 20px;
+  margin: 20px;
+  max-width: 1000px;
+  min-width: 250px;
+  height: 80%;
 }
 
 .article_list_head {
-    grid-area: head;
-    margin: 0px;
-    padding: 0px;
-    text-align: left;
-    font-size: 2em;
+  grid-area: head;
+  margin: 0px;
+  padding: 0px 0px 20px 0px;
+  text-align: left;
+  font-size: 1.7em;
 }
 
 .article_list_title {
-    margin: 0px;
-    padding: 0px;
-    font-size: 1.3em;
-    color: rgb(40, 37, 47);
+  margin: 0px;
+  padding: 0px;
+  font-size: 1.3em;
+  color: rgb(40, 37, 47);
 }
 
 .article_search {
-    grid-area: search;
+  grid-area: search;
+  font-size: 1.2em;
+  justify-self: right;
 }
 
 .article_add_button {
-    grid-area: add-button;
-    background-color: aquamarine;
-    height: 40px;
-    font-size: 0.9em;
-    margin-bottom: 10px;
+  grid-area: add-button;
+  background-color: aquamarine;
+  padding: 6px;
+  height: auto;
+  width: 150px;
+  font-size: 0.9em;
+  margin: 8px 0px 8px 0px;
 }
 
 .add_topic_select {
-    grid-area: add-button;
+  grid-area: add-button;
+  text-justify: left;
 }
 
 .article_list_scroll {
-    grid-area: scroll;
+  grid-area: scroll;
 }
 
 .article_add_container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-auto-rows: 1fr 5fr 1fr;
-    grid-template-areas: "heading current-topic posting-as" "form form form" ". . post-button";
-    background-color: rgb(221, 247, 255);
-    padding: 20px;
-    margin: 20px;
-    width: 50%;
-    min-width: 500px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-auto-rows: 1fr 5fr 1fr;
+  grid-template-areas: "heading current-topic posting-as" "form form form" ". . post-button";
+  background-color: rgb(221, 247, 255);
+  padding: 20px;
+  margin: 20px;
+  width: 50%;
+  min-width: 530px;
 }
 
 .current_topic {
-    grid-area: current-topic;
+  grid-area: current-topic;
 }
 
-article_add_heading {
-    grid-area: heading;
+.article_add_heading {
+  grid-area: heading;
 }
 
-posting_as {
-    grid-area: posting-as;
+.posting_as {
+  grid-area: posting-as;
 }
 
 .article_add_form {
-    grid-area: form;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 5fr;
-    grid-template-areas: "title-input" "body-input"
+  grid-area: form;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 5fr;
+  grid-template-areas: "title-input" "body-input"
 }
 
-title_input {
-    grid-area: title-input;
-    font-size: 1.2em;
-    height: 1.4em;
-    margin-bottom: 10px;
+.title_input {
+  grid-area: title-input;
+  font-size: 1.2em;
+  height: 1.4em;
+  margin-bottom: 10px;
 }
 
-body_input {
-    grid-area: body-input;
-    margin: 20px;
+.body_input {
+  grid-area: body-input;
+  margin: 20px;
 }
 
 .post_button {
-    grid-area: post-button;
-    font-size: 18px;
-    height: 35px;
-    margin: 20px;
+  grid-area: post-button;
+  font-size: 18px;
+  height: 35px;
+  margin: 20px;
 }
 
 ul {
-    list-style-type: none;
-    text-align: left;
-    overflow-x: unset;
-    padding: 5px 10px 5px 10px;
-    height: 61vh;
-    overflow-y: scroll;
-    background-color: rgb(206, 223, 206);
+  list-style-type: none;
+  text-align: left;
+  overflow-x: unset;
+  padding: 5px 10px 5px 10px;
+  height: 61vh;
+  overflow-y: scroll;
+  background-color: rgb(206, 223, 206);
 }
 
 .article_list_body {
-    font-size: 0.8em;
+  font-size: 1em;
 }
 
 .article_list_item {
-    border: 1px solid rgb(198, 213, 255);
-    background-color: rgb(255, 255, 255);
-    margin: 10px 10px 10px 10px;
-    padding: 8px;
+  border: 1px solid rgb(198, 213, 255);
+  background-color: rgb(255, 255, 255);
+  margin: 10px 10px 10px 10px;
+  padding: 8px;
 }
 
 .article_list_item:hover {
-    transform: scale(1.03);
-    transition: 500ms;
-    border: 1px solid rgb(83, 98, 57);
+  transform: scale(1.02);
+  transition: 500ms;
+  border: 1px solid rgb(83, 98, 57);
 }
 
 .vote_button {
-    height: 30px;
-    width: 30px;
-    border-radius: 15px;
-    padding: 0px;
-    font-size: 25px;
-    cursor: pointer;
+  height: 30px;
+  width: 30px;
+  border-radius: 15px;
+  padding: 0px;
+  font-size: 25px;
+  cursor: pointer;
 }
 
 .article_container {
-    display: grid;
-    grid-template-columns: 1fr 8fr;
-    grid-template-rows: 1fr;
-    min-width: 800px;
-    width: 70%;
-    margin: 20px;
+  display: grid;
+  grid-template-columns: 1fr 8fr;
+  grid-template-rows: 1fr;
+  min-width: 360px;
+  width: 80%;
+  margin: 20px;
 }
 
 .article_date {
-    font-size: 0.8em;
-    color: rgb(70, 70, 70);
-    margin: 10px 0px 5px 0px;
+  font-size: 0.8em;
+  color: rgb(70, 70, 70);
+  margin: 10px 0px 5px 0px;
 }
 
 .side_bar {
-    background-color: rgb(206, 223, 206);
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    align-items: center;
-    justify-items: center;
-    width: 80px;
+  background-color: rgb(206, 223, 206);
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+  width: 80px;
 }
 
 .article {
-    font-size: 1em;
-    line-height: 24px;
-    text-align: left;
-    overflow-x: unset;
-    padding: 10px 40px 10px 30px;
-    height: 70vh;
-    overflow-y: scroll;
+  font-size: 1em;
+  line-height: 24px;
+  text-align: left;
+  overflow-x: unset;
+  padding: 10px 40px 10px 30px;
+  height: 70vh;
+  overflow-y: scroll;
 }
 
 .comments_section {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .comment_side_bar {
-    background-color: rgb(194, 253, 255);
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    align-items: center;
-    justify-items: center;
-    width: 40px;
-    padding: 20px;
+  background-color: rgb(194, 253, 255);
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+  width: 40px;
+  padding: 20px;
 }
 
 .comment {
-    display: grid;
-    grid-template-columns: 8fr 1fr;
-    grid-template-rows: 1fr;
-    border: 1px solid rgb(158, 229, 231);
-    background-color: rgb(221, 247, 255);
-    font-size: 1em;
-    line-height: 20px;
-    margin: 10px 0px 10px 0px;
-    padding: 0px;
+  display: grid;
+  grid-template-columns: 8fr 1fr;
+  grid-template-rows: 1fr;
+  border: 1px solid rgb(158, 229, 231);
+  background-color: rgb(221, 247, 255);
+  font-size: 1em;
+  line-height: 20px;
+  margin: 10px 0px 10px 0px;
+  padding: 0px;
 }
 
 .comment_main {
-    padding: 20px;
+  padding: 20px;
 }
 
 .comment_user {
-    font-weight: bold;
-    margin-bottom: 10px;
-    padding: 0px 10px 0px 0px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  padding: 0px 10px 0px 0px;
 }
 
 #comment_delete_button {
-    font-size: 0.8em;
-    color: rgb(255, 255, 255);
-    height: auto;
-    width: auto;
-    border-radius: 3px;
-    background-color: rgba(255, 58, 58, 0.685);
-    margin-left: 10px;
+  font-size: 0.8em;
+  color: rgb(255, 255, 255);
+  height: auto;
+  width: auto;
+  border-radius: 3px;
+  background-color: rgba(255, 58, 58, 0.685);
+  margin-left: 10px;
 }
 
 #article_delete_button {
-    font-size: 0.8em;
-    color: rgb(255, 255, 255);
-    height: auto;
-    width: auto;
-    border-radius: 3px;
-    background-color: rgba(255, 58, 58, 0.685);
-    margin: 0px 0px 20px 10px;
+  font-size: 0.8em;
+  color: rgb(255, 255, 255);
+  height: auto;
+  width: auto;
+  border-radius: 3px;
+  background-color: rgba(255, 58, 58, 0.685);
+  margin: 0px 0px 20px 10px;
 }
 
 #comment_delete_button:hover {
-    transition: none;
-    transform: none;
-    border: 1px solid rgb(51, 12, 12);
-    background-color: rgb(255, 56, 56);
+  transition: none;
+  transform: none;
+  border: 1px solid rgb(51, 12, 12);
+  background-color: rgb(255, 56, 56);
 }
 
 .comment_body_input {
-    height: 100px;
-    width: 95%;
-    margin: 0px 10px 0px 10px;
-    font-size: 1.2em;
+  height: 100px;
+  width: 95%;
+  margin: 0px 10px 0px 10px;
+  font-size: 1.2em;
 }
 
 .vote_count {
-    margin: 0px;
-    font-size: 0.9em;
+  margin: 0px;
+  font-size: 0.9em;
 }

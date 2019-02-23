@@ -11,7 +11,7 @@ export default class ArticleSearch extends Component {
             <div>
                 <form className="article_search" onChange={this.handleChange} onSubmit={this.props.handleSubmit}>
                     <label>Search articles:</label>
-                    <input type="text" name="article_search_input" />
+                    <input type="text" className="article_search_input" name="article_search_input" />
                     <br />
                 </form>
             </div>
@@ -19,7 +19,13 @@ export default class ArticleSearch extends Component {
     }
 
     handleChange = (e) => {
-        return console.log(e.target, '<<<handleChangetarget')
+        this.setState({
+            currentText: e.target.val
+        })
     }
+
+    // componentDidUpdate (prevProps, prevState) {
+    //     if (prevProps)
+    // }
 }
 

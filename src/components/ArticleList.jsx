@@ -17,17 +17,19 @@ export default class ArticleList extends Component {
         const topicName = topic ? topic.replace(/^\w/, c => c.toUpperCase()) : '';
         return (
             <div className="article_list">
-                <h2 className="article_list_head">Most Popular {topicName} Articles</h2>
-                <span><ArticleSearch handleSubmit={this.handleSubmit} /></span>
-                {topic && <button className="article_add_button"><Link to={`${topic}/articles/new`}>+ New {topicName} Article</Link></button>}
-                {!topic && <TopicSelect />}
+                <div className="article_list_head">
+                    <h2 className="article_list_title">Most Popular {topicName} Articles</h2>
+                    <div><ArticleSearch handleSubmit={this.handleSubmit} /></div>
+                    {topic && <button className="article_add_button"><Link to={`${topic}/articles/new`}>+ New {topicName} Article</Link></button>}
+                    {!topic && <TopicSelect />}
+                </div>
                 <div className="article_list_scroll">
-                    <ul>
-                        {this.state.articles && this.state.articles.map(article => {
+                    <ul className="article_list_scroll_ul">
+                        {this.state.articles && this.state.articles.sort((a, b) => { return a.votes - b.votes }).map(article => {
                             return (
                                 <li className="article_list_item" key={article._id} >
                                     <Link to={`/articles/${article._id}`}>
-                                        <h4 className="article_list_title">{article.title}</h4>
+                                        <h4 className="article_list_item_title">{article.title}</h4>
                                         <p className="article_list_body">{bodyPreview(article.body)}</p>
                                     </Link>
                                 </li>

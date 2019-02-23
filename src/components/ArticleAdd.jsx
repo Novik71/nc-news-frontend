@@ -23,7 +23,7 @@ export default class ArticleAdd extends Component {
                 {this.props.loggedinUser && <span className="posting_as">Posting as <strong>{this.props.loggedinUser.username}</strong></span>}
                 {!this.props.loggedInUser && <span className="posting_as"><strong>Please log in to post</strong></span>}
                 <form className="article_add_form">
-                    <div className="title_input"><label>Title:</label><textarea onChange={this.handleTitleChange} /></div>
+                    <div id="title_input"><label id="title_input_label">Title:</label><textarea id="title_input_text_area" onChange={this.handleTitleChange} /></div>
                     <textarea className="body_input" onChange={this.handleBodyChange}></textarea>
                 </form>
                 <button className="post_button" disabled={!this.props.loggedInUser ? true : false} onClick={this.handlePost}>Post</button>

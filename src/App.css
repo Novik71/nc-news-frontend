@@ -1,14 +1,18 @@
 .App {
   display: grid;
-  text-align: center;
+  grid-template-columns: 1fr;
+  grid-template-rows: 12em auto;
+  grid-template-areas: "app-head app-body";
   padding: 0px;
-  height: 100%;
+  width: 90vw;
+  font-family: "Roboto"
 }
 
 .app_head_grid {
+  grid-area: app-head;
   display: grid;
-  grid-template-columns: 170px 440px;
-  grid-template-rows: 1fr 2.5fr;
+  grid-template-columns: 11em 25em;
+  grid-template-rows: 1fr 2.7fr;
   grid-template-areas: "icon login" "icon inner-grid";
   background-color: aquamarine;
 }
@@ -20,6 +24,7 @@
 }
 
 .home_page_container {
+  grid-area: app-body;
   height: auto;
 }
 
@@ -97,7 +102,7 @@ label {
 input {
   margin: 3px 5px 3px 5px;
   height: 1.5em;
-  width: 80px;
+  width: 70px;
   border-radius: 5px;
   padding: 0px 0px 0px 4px
 }
@@ -145,9 +150,10 @@ button:hover:enabled {
   margin-top: 5px;
   padding: 4px;
   font-size: 1em;
-  width: 410px;
+  width: 375px;
   max-height: 37px;
   grid-area: login;
+  display: grid;
   justify-items: left;
 }
 
@@ -163,8 +169,11 @@ button:hover:enabled {
   grid-area: logout;
 }
 
-.login_info {
+#login_info {
   display: grid;
+  justify-content: left;
+  align-items: center;
+  padding-left: 10px;
   grid-template-columns: 7fr 1fr;
   grid-template-rows: 1fr;
   grid-template-areas: "logged-in logout"
@@ -172,50 +181,62 @@ button:hover:enabled {
 
 .article_list {
   display: grid;
-  grid-template-columns: 120px auto;
-  grid-template-rows: auto auto 100%;
-  grid-template-areas: "head head" "add-button search" "scroll scroll";
+  grid-template-rows: auto 80vh;
+  grid-template-areas: "head" "scroll";
   background-color: rgb(221, 247, 255);
   padding: 20px 20px 10px 20px;
   margin: 20px;
   max-width: 1000px;
   min-width: 250px;
-  height: 80%;
+  height: auto;
 }
 
 .article_list_head {
   grid-area: head;
+  display: grid;
+  grid-template-columns: 15em auto;
+  grid-template-rows: 4em 4em;
+  grid-template-areas: "title title" "search add-or-select";
+}
+
+.article_list_title {
+  grid-area: title;
   margin: 0px;
   padding: 0px 0px 20px 0px;
   text-align: left;
   font-size: 1.7em;
 }
 
-.article_list_title {
-  margin: 0px;
+.article_list_item_title {
+  margin: 5px;
   padding: 0px;
-  font-size: 1.3em;
+  font-size: 1.4em;
   color: rgb(40, 37, 47);
 }
 
 .article_search {
   grid-area: search;
   font-size: 1.2em;
-  justify-self: right;
+  justify-content: right;
+}
+
+.article_search_input {
+  width: 200px;
+  height: 1.6em;
 }
 
 .article_add_button {
-  grid-area: add-button;
+  grid-area: add-or-select;
   background-color: aquamarine;
   padding: 6px;
   height: auto;
   width: 150px;
   font-size: 0.9em;
-  margin: 8px 0px 8px 0px;
+  margin: 8px;
 }
 
 .add_topic_select {
-  grid-area: add-button;
+  grid-area: add-or-select;
   text-justify: left;
 }
 
@@ -223,10 +244,14 @@ button:hover:enabled {
   grid-area: scroll;
 }
 
+.article_list_scroll_ul {
+  height: 90%;
+}
+
 .article_add_container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-auto-rows: 1fr 5fr 1fr;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-auto-rows: 60px 7fr 1fr;
   grid-template-areas: "heading current-topic posting-as" "form form form" ". . post-button";
   background-color: rgb(221, 247, 255);
   padding: 20px;
@@ -251,20 +276,39 @@ button:hover:enabled {
   grid-area: form;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 5fr;
+  grid-template-rows: 1fr 7fr;
   grid-template-areas: "title-input" "body-input"
 }
 
-.title_input {
+#title_input {
   grid-area: title-input;
-  font-size: 1.2em;
-  height: 1.4em;
-  margin-bottom: 10px;
+  display: grid;
+  grid-template-columns: 90px auto;
+  grid-template-areas: "title-label text-area";
+  font-size: 1.5em;
+  margin: 10px 25px 10px 20px;
+  justify-self: left;
+  text-justify: left;
+  width: 90%;
+}
+
+#title_input_label {
+  grid-area: title-label
+}
+
+#title_input_text_area {
+  width: 100%;
+  font-size: 1.0em;
+  padding: 5px;
+  height: 1.2em;
+  grid-area: text-area;
 }
 
 .body_input {
   grid-area: body-input;
+  font-size: 1em;
   margin: 20px;
+  padding: 5px;
 }
 
 .post_button {
@@ -272,6 +316,7 @@ button:hover:enabled {
   font-size: 18px;
   height: 35px;
   margin: 20px;
+  width: 200px;
 }
 
 ul {
@@ -279,13 +324,13 @@ ul {
   text-align: left;
   overflow-x: unset;
   padding: 5px 10px 5px 10px;
-  height: 61vh;
   overflow-y: scroll;
   background-color: rgb(206, 223, 206);
 }
 
 .article_list_body {
   font-size: 1em;
+  margin: 10px;
 }
 
 .article_list_item {
@@ -305,7 +350,7 @@ ul {
   height: 30px;
   width: 30px;
   border-radius: 15px;
-  padding: 0px;
+  padding: 3px 0px 0px 0px;
   font-size: 25px;
   cursor: pointer;
 }

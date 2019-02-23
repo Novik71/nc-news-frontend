@@ -50,6 +50,10 @@ export default class ArticleView extends Component {
     }
 
     handleVote = (voteDir) => {
+        const voteValue = voteDir === 'up' ? 1 : -1;
+        this.setState({
+            voteValueThisRefresh: this.state.voteValueThisRefresh + voteValue
+        })
         if (this.props.loggedInUser) {
             const article_id = this.state.article._id;
             return api.voteArticle(voteDir, article_id)
@@ -60,14 +64,20 @@ export default class ArticleView extends Component {
                         fakeVotes: newFakeVotes
                     })
                 })
-        }
+        } else {
+            console.log("You must be logged in to vote!");
+        } 
     }
 
     handleDelete = (article_id) => {
         return api.deleteArticle(article_id)
             .then(([data, status]) => {
                 if (/^2+/gm.test(status)) {
-                    console.log('Article successfully deleted!')
+                    console.log('Article successfully deleted')
+                    return (
+                        <Redirect to='/' />
+                    )
+                } else {
                     return (
                         <Redirect to='/' />
                     )
@@ -79,10 +89,19 @@ export default class ArticleView extends Component {
         const { article_id } = this.props.match.params;
         return api.fetchSingleArticleAndComments(article_id)
             .then(([article, comments]) => {
-                if (article.hasOwnProperty('title')) {
+                if (!article) {
+                    console.log('Article does not exist')
+                    return (
+                        <Redirect to='/' />
+                    )
+                } else if (article.hasOwnProperty('title')) {
                     return this.setState({
                         article, comments, fakeVotes: article.votes
                     })
+                } else {
+                    return (
+                        <Redirect to='/' />
+                    )
                 }
             })
     }
@@ -92,7 +111,12 @@ export default class ArticleView extends Component {
         if (this.state.newComments !== prevState.newComments) {
             return api.fetchSingleArticleAndComments(article_id)
                 .then(([article, comments]) => {
-                    if (article.hasOwnProperty('title')) {
+                    if (!article) {
+                        console.log('Article does not exist')
+                        return (
+                            <Redirect to='/' />
+                        )
+                    } else if (article.hasOwnProperty('title')) {
                         return this.setState({
                             article, comments, fakeVotes: article.votes
                         })
@@ -101,7 +125,12 @@ export default class ArticleView extends Component {
         } else if (this.props.loggedInUser) {
             return api.fetchSingleArticleAndComments(article_id)
                 .then(([article, comments]) => {
-                    if (article.hasOwnProperty('title')) {
+                    if (!article) {
+                        console.log('Article does not exist')
+                        return (
+                            <Redirect to='/' />
+                        )
+                    } else if (article.hasOwnProperty('title')) {
                         return this.setState({
                             article, comments, fakeVotes: article.votes
                         })

@@ -5,7 +5,7 @@ const fetchArticles = (topic) => {
     if (topic === undefined) {
         return axios.get(`${API_URL}/articles`)
             .then(({ data }) => {
-                return data.articles;
+                return data.articles.sort((a, b) => { return a.votes - b.votes });
             })
             .catch(console.log)
     } else {
@@ -23,7 +23,10 @@ const fetchSingleArticleAndComments = (article_id) => {
             comments.sort((a, b) => { return a.created_at - b.created_at })
             return [article, comments];
         })
-        .catch(console.log)
+        .catch((err) => {
+            console.log(err, 'fetchSingleArticleAndComments error')
+            return err
+        })
 }
 
 const voteArticle = (vote, article_id) => {
@@ -46,6 +49,9 @@ const fetchArticle = (article_id) => {
     return axios.get(`${API_URL}/articles/${article_id}`)
         .then(({ data }) => {
             return data.article;
+        })
+        .catch((err) => {
+            console.log(err, 'fetchArticle error')
         })
 }
 

@@ -21,7 +21,6 @@ export default class SingleComment extends Component {
         return (
             <div className="comment" >
                 <div className="comment_main">
-                    <span><button id="comment_delete_button" onClick={() => this.handleDelete(comment._id)} hidden={ownComment ? false : true}>Delete</button></span><br />
                     <span className="comment_user">{comment.created_by.username}</span>
                     <span className="comment_date"> {moment(comment.created_at).fromNow()}</span>
                     <span><button id="comment_delete_button" onClick={() => this.handleDelete(comment._id)} hidden={ownComment ? false : true}>Delete</button></span><br />

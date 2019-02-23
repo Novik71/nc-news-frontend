@@ -25,7 +25,7 @@ export default class ArticleList extends Component {
                 </div>
                 <div className="article_list_scroll">
                     <ul className="article_list_scroll_ul">
-                        {this.state.articles && this.state.articles.sort((a, b) => { return a.votes - b.votes }).map(article => {
+                        {this.state.articles && this.state.articles.sort((a, b) => { return b.votes - a.votes }).map(article => {
                             return (
                                 <li className="article_list_item" key={article._id} >
                                     <Link to={`/articles/${article._id}`}>

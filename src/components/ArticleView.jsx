@@ -14,6 +14,7 @@ export default class ArticleView extends Component {
         article: null,
         comments: [],
         fakeVotes: 0,
+        deleted: false
     }
 
     render() {
@@ -28,6 +29,7 @@ export default class ArticleView extends Component {
             }
             return (
                 <div className="article_container">
+                {this.state.deleted && <Redirect to={`/`} /> }
                     <SideBar handleVote={this.handleVote} loggedInUser={this.props.loggedInUser} fakeVotes={this.state.fakeVotes} />
                     <div className="article">
                         <h2>{title}</h2>
@@ -74,9 +76,7 @@ export default class ArticleView extends Component {
             .then(([data, status]) => {
                 if (/^2+/gm.test(status)) {
                     console.log('Article successfully deleted')
-                    return (
-                        <Redirect to='/' />
-                    )
+                    this.setState({deleted:true})
                 } else {
                     return (
                         <Redirect to='/' />

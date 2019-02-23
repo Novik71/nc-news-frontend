@@ -10,7 +10,6 @@ export default class ArticleAdd extends Component {
         title: '',
         body: '',
         articleAddedId: null,
-        // redirect: false
     }
 
     render() {

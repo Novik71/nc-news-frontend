@@ -9,16 +9,16 @@ export default class ArticleAdd extends Component {
         topic: '',
         title: '',
         body: '',
-        articleAddedId: null
+        articleAddedId: null,
+        // redirect: false
     }
 
     render() {
         const topic = this.props.match.params.topic_id;
-        console.log(topic)
         const topicName = topic ? topic.replace(/^\w/, c => c.toUpperCase()) : '';
         return (
             <div className="article_add_container">
-                {/* this.state.articleAddedId && <Redirect to={`/articles/${this.state.articleAddedId}`} /> */}
+                {this.state.articleAddedId && <Redirect to={`/articles/${this.state.articleAddedId}`} /> }
                 <h3 className="article_add_heading">Post Article</h3><span className="current_topic">Topic: {topicName ? topicName : 'Technology'}</span>
                 {this.props.loggedinUser && <span className="posting_as">Posting as <strong>{this.props.loggedinUser.username}</strong></span>}
                 {!this.props.loggedInUser && <span className="posting_as"><strong>Please log in to post</strong></span>}
@@ -51,7 +51,9 @@ export default class ArticleAdd extends Component {
         const created_by = this.props.loggedInUser._id;
         return api.addArticle(title, body, created_by, topic)
             .then(({ data, status }) => {
-                if (status === 201) return this.setRedirect(data._doc._id);
+                if (status === 201) {
+                    return this.setRedirect(data._doc._id);
+                }
             })
             .catch(err => console.log(err))
     }
@@ -62,23 +64,6 @@ export default class ArticleAdd extends Component {
         })
     }
 
-    componentWillMount() {
-        console.log('Component will mount')
-    }
-
-    handleRedirect = () => {
-        if (this.state.articleAddedId) {
-            return (
-                <Redirect to={`/articles/${this.state.articleAddedId}`} />
-            )
-        }
-    }
-
-    componentDidUpdate(prevProps, prevState) {
-        if (this.state.articleAddedId !== prevState.articleAddedId) {
-            this.handleRedirect()
-        }
-    }
 }
 
 ArticleAdd.propTypes = {

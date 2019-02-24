@@ -9,7 +9,9 @@ const api = require('../api');
 export default class ArticleList extends Component {
 
     state = {
-        articles: []
+        allArticles: [],
+        articles : [],
+        currentText: ''
     }
 
     render() {
@@ -19,7 +21,7 @@ export default class ArticleList extends Component {
             <div className="article_list">
                 <div className="article_list_head">
                     <h2 className="article_list_title">Most Popular {topicName} Articles</h2>
-                    <div><ArticleSearch handleSubmit={this.handleSubmit} /></div>
+                    <div><ArticleSearch handleChange={this.handleChange} handleSubmit={this.handleSubmit} /></div>
                     {topic && <button className="article_add_button"><Link to={`${topic}/articles/new`}>+ New {topicName} Article</Link></button>}
                     {!topic && <TopicSelect />}
                 </div>
@@ -45,20 +47,45 @@ export default class ArticleList extends Component {
         return api.fetchArticles(this.props.topic)
             .then((articles) => {
                 return this.setState({
+                    allArticles : articles,
                     articles
                 })
             })
     }
 
-    componentDidUpdate(prevProps) {
+    componentDidUpdate(prevProps, prevState) {
         if (prevProps.topic !== this.props.topic) {
             return api.fetchArticles(this.props.topic)
                 .then((articles) => {
                     return this.setState({
+                        allArticles : articles,
                         articles
                     })
                 })
         }
+
+        if (prevState.currentText !== this.state.currentText) {
+            const { allArticles, currentText } = this.state;
+            console.log(currentText, "componentDidUpdate currentText")
+            return this.setState({
+                articles : this.getMatches(allArticles, currentText)
+            })
+        }
+
+    }
+
+    handleChange = (e) => {
+        console.log(e.target.value, "handleChange")
+        return this.setState({
+            currentText: e.target.value,
+        })
+    }
+
+    getMatches = (arr, str) => {
+        console.log(str, "getMatches str")
+        return arr.filter((x) => {
+            return x.body.toLowerCase().includes(str.toLowerCase()) || x.title.toLowerCase().includes(str.toLowerCase())
+        })
     }
 
 }

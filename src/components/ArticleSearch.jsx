@@ -3,13 +3,13 @@ import React, { Component } from 'react';
 export default class ArticleSearch extends Component {
 
     state = {
-        currentText: ''
+        currentText : ''
     }
 
     render() {
         return (
             <div>
-                <form className="article_search" onChange={this.handleChange} onSubmit={this.props.handleSubmit}>
+                <form className="article_search" onChange={(e) => this.props.handleChange(e)} onSubmit={this.props.handleSubmit} >
                     <label>Search articles:</label>
                     <input type="text" className="article_search_input" name="article_search_input" />
                     <br />
@@ -18,14 +18,5 @@ export default class ArticleSearch extends Component {
         );
     }
 
-    handleChange = (e) => {
-        this.setState({
-            currentText: e.target.val
-        })
-    }
-
-    // componentDidUpdate (prevProps, prevState) {
-    //     if (prevProps)
-    // }
 }
 

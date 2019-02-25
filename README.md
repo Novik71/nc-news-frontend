@@ -69,5 +69,5 @@ You can find instructions in [Deploying React with Zero Configuration](https://b
 
 ## Production Version
 
-A live heroku-hosted version of the app is viewable at https://herokuapp.com.
+A live heroku-hosted version of the app is viewable at https://nc-news-frontend-tps.herokuapp.com.
 To test site functionality for a logged in user, log-in is available with the username "grumpy19" and any password. You can then post articles, comment on articles, up-vote and down-vote comments and articles, and delete comments that you have posted.

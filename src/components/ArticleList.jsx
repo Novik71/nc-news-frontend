@@ -66,7 +66,6 @@ export default class ArticleList extends Component {
 
         if (prevState.currentText !== this.state.currentText) {
             const { allArticles, currentText } = this.state;
-            console.log(currentText, "componentDidUpdate currentText")
             return this.setState({
                 articles : this.getMatches(allArticles, currentText)
             })
@@ -75,14 +74,12 @@ export default class ArticleList extends Component {
     }
 
     handleChange = (e) => {
-        console.log(e.target.value, "handleChange")
         return this.setState({
             currentText: e.target.value,
         })
     }
 
     getMatches = (arr, str) => {
-        console.log(str, "getMatches str")
         return arr.filter((x) => {
             return x.body.toLowerCase().includes(str.toLowerCase()) || x.title.toLowerCase().includes(str.toLowerCase())
         })

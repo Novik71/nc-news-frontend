@@ -1,4 +1,4 @@
 exports.bodyPreview = (string) => {
-    const array = string.split(' ').slice(0, 40)
+    const array = string.split(' ').slice(0, 55)
     return array.join(' ').concat('...');
 }

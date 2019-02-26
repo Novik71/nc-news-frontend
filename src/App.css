@@ -11,7 +11,7 @@
 .app_head_grid {
   grid-area: app-head;
   display: grid;
-  grid-template-columns: 11em 26em;
+  grid-template-columns: 11em 25em;
   grid-template-rows: 1fr 2.7fr;
   grid-template-areas: "icon login" "icon inner-grid";
   background-color: aquamarine;
@@ -23,10 +23,6 @@
   grid-area: inner-grid;
 }
 
-.app_body {
-  min-width: 610px;
-}
-
 .home_page_container {
   grid-area: app-body;
   height: auto;
@@ -36,7 +32,6 @@ nav {
   margin: 0px;
   padding: 0px;
   font-size: 1.6em;
-  font-family: "Roboto";
   color: rgb(40, 37, 47);
 }
 
@@ -63,17 +58,16 @@ nav {
 
 h1 {
   font-size: 5em;
+  /* color: rgb(40, 37, 47); */
   color: rgb(213, 255, 134);
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
   margin: 0px;
   padding: 0;
-  font-family: "Righteous";
 }
 
 h2 {
   font-size: 2em;
   line-height: 1.3em;
-  font-family: "Sunflower"
 }
 
 h3 {
@@ -87,7 +81,6 @@ h4 {
   text-align: left;
   padding: 10px;
   margin: 0px;
-  font-family: "Roboto";
 }
 
 h5 {
@@ -123,7 +116,6 @@ input {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-areas: "user-label pass-label";
-  min-width: 380px;
 }
 
 #username_label {
@@ -157,8 +149,7 @@ button:hover:enabled {
   color: rgb(40, 37, 47);
   margin-top: 5px;
   padding: 4px;
-  font-size: 0.9em;
-  font-family: "Mina";
+  font-size: 1em;
   width: 375px;
   max-height: 37px;
   grid-area: login;
@@ -172,7 +163,6 @@ button:hover:enabled {
   margin: 3px;
   width: auto;
   grid-area: login-button;
-  justify-items: right;
 }
 
 #logout_button {
@@ -369,8 +359,8 @@ ul {
   display: grid;
   grid-template-columns: 1fr 8fr;
   grid-template-rows: 1fr;
-  max-width: 950px;
-  width: 95%;
+  min-width: 360px;
+  width: 80%;
   margin: 20px;
 }
 
@@ -384,7 +374,7 @@ ul {
   background-color: rgb(206, 223, 206);
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 40px 40px 40px 1fr;
   align-items: center;
   justify-items: center;
   width: 80px;
@@ -395,9 +385,8 @@ ul {
   line-height: 24px;
   text-align: left;
   overflow-x: unset;
-  margin-right: 0px;
   padding: 10px 40px 10px 30px;
-  min-height: 70vh;
+  height: 70vh;
   overflow-y: scroll;
 }
 
